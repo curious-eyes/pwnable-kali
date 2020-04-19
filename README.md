@@ -20,6 +20,10 @@ kaliにroot権限でログイン（exitしたらコンテナは削除されま�
 docker run --cap-add=SYS_PTRACE --security-opt="seccomp=unconfined" --name ctf-kali -v $(pwd):/usr/src/app -w /usr/src/app -it --rm kali/rolling /bin/bash
 ```
 
+## Play Game!
+
+https://pwnable.kr/play.php
+
 
 ## Clean Up Your Docker Images After Enjoying Pwnable
 
