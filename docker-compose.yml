@@ -1,0 +1,12 @@
+version: '3'
+services:
+  playgame:
+    build: ./play
+    volumes:
+      - ./play:/usr/src/app
+    working_dir: /usr/src/app
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    tty: true

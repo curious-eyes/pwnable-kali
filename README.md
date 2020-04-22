@@ -3,21 +3,24 @@ pwnable.kr を楽しむためのKaliLinux環境
 
 ## Install Docker
 
-Docker をインストールしてください。
+Docker, Docker Compose をインストールしてください。
 
 https://docs.docker.com/get-docker/
+
+https://docs.docker.com/compose/install/
 
 
 ## Build and Run Your Docker Container
 
 ```
-docker build -t kali/rolling .
+docker-compose build
+docker-compose up -d
 ```
 
 kaliにroot権限でログイン（exitしたらコンテナは削除されます）
 
 ```
-docker run --cap-add=SYS_PTRACE --security-opt="seccomp=unconfined" --name ctf-kali -v $(pwd):/usr/src/app -w /usr/src/app -it --rm kali/rolling /bin/bash
+docker-compose exec play bash
 ```
 
 ## Play Game!
@@ -27,7 +30,8 @@ https://pwnable.kr/play.php
 
 ## Clean Up Your Docker Images After Enjoying Pwnable
 
-exit で抜けたあと、Docker imageが残ってしまうので、削除します。
+exit で抜けたあと、Docker imageが残ってしまうので削除します。
+
 削除しても、 /usr/src/app に作成したディレクトリ・ファイルは残ります。
 
 ```

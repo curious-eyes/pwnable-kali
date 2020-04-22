@@ -6,11 +6,12 @@ RUN apt-get upgrade -y && apt-get clean && rm -rf /var/cache/apt/archives/* /var
 RUN apt-get update
 
 # https://tools.kali.org/kali-metapackages
-RUN apt-get -y install kali-tools-reverse-engineering
+# RUN apt-get -y install kali-tools-reverse-engineering
 # RUN apt-get -y install kali-tools-default
 # RUN apt-get -y install kali-tools-headless
 # RUN apt-get -y install kali-tools-top10
 
-RUN apt-get -y install gdb ncat
+RUN apt-get -y install git gdb ncat python3-pip
 
-# ENTRYPOINT bin/bash
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade git+https://github.com/Gallopsled/pwntools.git@dev
