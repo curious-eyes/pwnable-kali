@@ -15,11 +15,6 @@ https://docs.docker.com/compose/install/
 ```
 docker-compose build
 docker-compose up -d
-```
-
-kaliにroot権限でログイン（exitしたらコンテナは削除されます）
-
-```
 docker-compose exec play bash
 ```
 
@@ -35,7 +30,14 @@ exit で抜けたあと、Docker imageが残ってしまうので削除します
 削除しても、 /usr/src/app に作成したディレクトリ・ファイルは残ります。
 
 ```
+docker stop $(docker ps -q)
 docker system prune
 docker rmi $(docker images -qa)
 docker system df
+
+TYPE                TOTAL               ACTIVE              SIZE                RECLAIMABLE
+Images              0                   0                   0B                  0B
+Containers          0                   0                   0B                  0B
+Local Volumes       0                   0                   0B                  0B
+Build Cache         0                   0                   0B                  0B
 ```
