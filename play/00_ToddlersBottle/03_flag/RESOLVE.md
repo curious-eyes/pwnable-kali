@@ -102,7 +102,6 @@ $ file ./unpacked
 
 ## さらに解析
 
-http://kent056-n.hatenablog.com/entry/2017/06/22/233747
 
 ```bash
 $ gdb ./unpacked
@@ -129,7 +128,9 @@ End of assembler dump.
 
 `<+23>`で、`malloc`していて、`<+32>`の行に `# 0x6c2070 <flag>` と記述している箇所が怪しいです。
 
-`rdx`にフラグを`strcpy`しているということのようです。
+`rdx`というデータレジスタにフラグを`strcpy`しているということのようです。
+
+( 参考: https://www.mztn.org/lxasm64/amd04.html#rdx )
 
 該当箇所にブレークポイント(`b`)を設置して、実行(`r`)してみます。
 
@@ -143,7 +144,7 @@ I will malloc() and strcpy the flag there. take it.
 Breakpoint 1, 0x0000000000401184 in main ()
 ```
 
-ブレークポイントの箇所では、まだ`rdx`にはコピーされていません。
+ブレークポイントの箇所では、まだ`rdx`にコピーされていません。
 
 ステップ実行(`nexti`)することで、該当行(`main<+32>`)が実行されます。
 
@@ -175,12 +176,12 @@ ASCII文字列(Little Endian)なので頑張って読むこともできますが
 
 `x`コマンドは出力フォーマットが選べるので、いろいろ試すことができます。
 
-https://flex.phys.tohoku.ac.jp/texi/gdb-j/gdb-j_41.html
+( 参考: https://flex.phys.tohoku.ac.jp/texi/gdb-j/gdb-j_41.html )
 
 
 ## Incidentally
 
-`UPX` が気になります。
+[`UPX`](https://upx.github.io/) が気になります。
 
 通常の実行ファイルでは `gdb` コマンドでデバッグが可能ですが、圧縮すると `no section header` になってステップ実行などができなくなるようです。
 
