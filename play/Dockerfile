@@ -10,7 +10,7 @@ RUN apt-get upgrade -y
 # RUN apt-get -y install kali-tools-headless
 # RUN apt-get -y install kali-tools-top10
 
-RUN apt-get -y install git gdb ncat python3-pip g++-multilib && \
+RUN apt-get -y install git gdb ncat python3-pip g++-multilib curl hexedit && \
     apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 RUN python3 -m pip install --upgrade pip

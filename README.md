@@ -27,7 +27,7 @@ https://pwnable.kr/play.php
 
 exit で抜けたあと、Docker imageが残ってしまうので削除します。
 
-削除しても、 /usr/src/app に作成したディレクトリ・ファイルは残ります。
+Docker imageを削除しても /usr/src/app に作成した作業内容は残りますので、ノウハウをためていけます。
 
 ```
 docker stop $(docker ps -q)
